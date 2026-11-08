@@ -13,8 +13,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,6 +52,9 @@ public class Producto {
     @OneToMany(mappedBy = "producto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Setter 
     private Set<Image> imagenes;
-    
-    
+
+    @ManyToMany(mappedBy = "productos", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @Setter
+    private Set<Department> deparments = new HashSet<>();
 }
